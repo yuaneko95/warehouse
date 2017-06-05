@@ -65,6 +65,7 @@
 													<li><a href="<?= base_url('superuser/pengirim/create') ?>"><i class=" icon-add"></i> Tambah Pengiriman</a></li>
 													<!-- <li><a href="{{base_url('superuser/soal/list/'.$result->id_bab)}}"><i class=" icon-file-text"></i> Detail Barang</a></li> -->
 													<li><a href="<?= base_url('superuser/pengirim/update/'.$result->id_pengirim) ?>"><i class="icon-pencil7"></i> Edit Pengiriman</a></li>
+													<li><a href="<?= base_url('superuser/pengirim/detail/'.$result->id_pengirim) ?>"><i class="icon-printer"></i> cetak</a></li>
 													<li><a href="javascript:void(0)" onclick="deleteIt(this)" data-url="<?php echo base_url('superuser/pengirim/deleted/'.$result->id_pengirim) ?>"><i class="icon-trash"></i> Hapus Pengiriman</a></li>
 												</ul>
 											</li>

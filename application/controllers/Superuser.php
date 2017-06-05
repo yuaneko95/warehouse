@@ -17,6 +17,7 @@ class Superuser extends CI_Controller
 		$this->load->model('m_detail_pengirim');
 		$this->load->model('m_terima');
 		$this->load->model('m_detail_terima');
+		 $this->load->library('dompdf_gen');
 	}
 
 	public function index()
@@ -317,12 +318,22 @@ class Superuser extends CI_Controller
 			$data['type'] = "detail";
 			$where = array ('id_pengirim' => $id);
 
-			$data['detail_pengirim'] = $this->m_detail_pengirim->show_all('detail_pengirim')->row();
+			$data['detail_pengirim'] = $this->m_detail_pengirim->detail($where,'detail_pengirim')->row();
 			$data['pengirim'] = $this->m_pengirim->detail($where, 'pengirim')->row();
 
-			$this->load->view('template', $data);
-			$this->load->view('cetak_suratjalan',$data);
-			$this->load->view('footer');
+			// $this->load->view('template', $data);
+			$this->load->view('cetak_surat_jalan',$data);
+			// $this->load->view('footer');
+
+			$paper_size  = 'A5'; //paper size
+	        $orientation = 'landscape'; //tipe format kertas
+	        $html = $this->output->get_output();
+	 
+	        $this->dompdf->set_paper($paper_size, $orientation);
+	        //Convert to PDF
+	        $this->dompdf->load_html($html);
+	        $this->dompdf->render();
+	        $this->dompdf->stream("Surat_Jalan.pdf", array('Attachment'=>0));
 		} else {
 			$this->load->view('template', $data);
 			$this->load->view('pengirim',$data);
