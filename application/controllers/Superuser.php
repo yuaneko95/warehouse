@@ -255,11 +255,13 @@ class Superuser extends CI_Controller
 			$id_barang			= $this->input->post('id_barang');
 			$id_agen			= $this->input->post('id_agen');
 			$jumlah				= $this->input->post('jumlah');
+			$tgl_kirim			= date('Y-m-d');
 
 			$data_pengirim = array (
 					'id_pengirim'		=> $id_pengirim,
 					'id_sopir'			=> $id_sopir,
-					'id_agen'			=> $id_agen
+					'id_agen'			=> $id_agen,
+					'tgl_kirim'			=> $tgl_kirim
 				);
 
 			$data_detail_pengirim = array (
@@ -430,11 +432,13 @@ class Superuser extends CI_Controller
 			$id_supp   = $this->input->post('id_supp');
 			$id_barang = $this->input->post('id_barang');
 			$jumlah	   = $this->input->post('Jumlah');
+			$tgl_masuk = date('Y-m-d');
 			// var_dump($this->input->post('jumlah'));
 			// die();
 			$data_terima = array (
 					'id_terima'	 => $id_terima,
-					'id_supp'	 => $id_supp
+					'id_supp'	 => $id_supp,
+					'tgl_masuk'	 => $tgl_masuk
 				);
 
 			$data_detail_terima = array (
@@ -476,9 +480,11 @@ class Superuser extends CI_Controller
 			$id_supp   = $this->input->post('id_supp');
 			$id_barang = $this->input->post('id_barang');
 			$jumlah	   = $this->input->post('jumlah');
+			$tgl_masuk = date('Y-m-d');
 			$data_terima = array (
 					'id_terima'	 => $id_terima,
-					'id_supp'	 => $id_supp
+					'id_supp'	 => $id_supp,
+					'tgl_masuk'  => $tgl_masuk
 				);
 
 			$data_detail_terima = array (
@@ -503,6 +509,45 @@ class Superuser extends CI_Controller
 			$this->load->view('terima',$data);
 			$this->load->view('footer');
 		}
+	}
+
+	public function ajax_bulk_report()
+	{
+		$list_id = $this->input->post('id');
+	
+		foreach ($list_id as $id) {
+			$id_terima = $this->input->post('id_terima');
+			$id_supp   = $this->input->post('id_supp');
+			$id_barang = $this->input->post('id_barang');
+			$jumlah	   = $this->input->post('jumlah');
+			$data['terima'] = array (
+					'id_terima'	 => $id_terima,
+					'id_supp'	 => $id_supp
+				);
+
+			$data['detail_terima'] = array (
+					'id_terima' => $id_terima,
+					'id_barang' => $id_barang,
+					'jumlah' 	=> $jumlah
+				);
+
+			$data['detail_pengirim']=$this->m_detail_pengirim->detail($id,'detail_pengirim')->result();
+			$data['pengirim']=$this->m_pengirim->detail($id, 'pengirim')->result();
+			// $this->load->view('template', $data);
+			$this->load->view('cetak_surat_jalan');
+			// $this->load->view('footer');
+
+			// $paper_size  = 'A5'; //paper size
+	  //       $orientation = 'landscape'; //tipe format kertas
+	  //       $html = $this->output->get_output();
+	 
+	  //       $this->dompdf->set_paper($paper_size, $orientation);
+	  //       //Convert to PDF
+	  //       $this->dompdf->load_html($html);
+	  //       $this->dompdf->render();
+	  //       $this->dompdf->stream("Surat_Jalan.pdf", array('Attachment'=>0));
+		}
+		echo json_encode($data);
 	}
 }
 

@@ -38,7 +38,7 @@
 									<div class="form-group">
 										<label class="control-label col-lg-2">Nama Sopir</label>
 										<div class="col-lg-4">
-										<select required class="select-search" name="id_sopir">
+										<select required class="form-control" name="id_sopir">
 											<optgroup label="Pilih Sopir">
 												<option value="">Pilih</option>
 												<?php foreach ($sopir as $result): ?>
@@ -59,7 +59,7 @@
 									<div class="form-group">
 										<label class="control-label col-lg-2">Barang</label>
 										<div class="col-lg-4">
-										<select required class="select-search" name="id_barang">
+										<select required class="form-control" name="id_barang">
 											<optgroup label="Pilih Barang">
 												<option value="">Pilih</option>
 												<?php foreach ($barang as $result): ?>
@@ -86,7 +86,7 @@
 									<div class="form-group">
 										<label class="control-label col-lg-2">Ke Agen</label>
 										<div class="col-lg-4">
-										<select required class="select-search" name="id_agen">
+										<select required class="form-control" name="id_agen">
 											<optgroup label="Pilih Supplier">
 												<option value="">Pilih</option>
 												<?php foreach ($agen as $result): ?>

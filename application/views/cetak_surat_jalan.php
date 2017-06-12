@@ -5,7 +5,7 @@
   <style>
   table{
       border-collapse: collapse;
-      width: 70%;
+      width: 90%;
       margin: 0 auto;
   }
   table th{
@@ -32,6 +32,7 @@
         <th>Jumlah</th>
         <th>Ke Agen</th>
         <th>Alamat</th>
+        <th>Tgl Kirim</th>
     </tr>
     
     <tr>
@@ -40,6 +41,7 @@
         <td><?= $detail_pengirim->jumlah ?></td>
         <td><?= $pengirim->nma_agen ?></td>
         <td><?= $pengirim->alamat_agen ?></td>
+        <td><?= $pengirim->tgl_kirim ?></td>
     </tr>
     
 </table>

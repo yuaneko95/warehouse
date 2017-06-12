@@ -74,12 +74,7 @@
 										</select>
 										</div>
 									</div>
-									<div class="form-group">
-										<label class="control-label col-lg-2">Tgl Masuk</label>
-										<div class="col-lg-4">
-											<input type="date" class="form-control" name="waktu_masuk" value="<?=  ($type=='create') ? '' : $barang->waktu_masuk  ?>" required>
-										</div>
-									</div>
+									
 								</fieldset>
 								<div class="text-right">
 									<button type="submit" class="btn btn-primary"><?= ($type=='create') ? 'Simpan' : 'Edit' ?> <i class="icon-arrow-right14 position-right"></i></button>

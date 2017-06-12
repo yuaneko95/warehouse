@@ -40,8 +40,8 @@
 									<th>Dari Supplier</th>
 									<th>Barang Yang Masuk</th>
 									<th>Jumlah Yang Masuk</th>
-									<!-- <th>Tgl Masuk</th> -->
-									<th style="width: 10%" class="text-center" align="center">Actions</th>
+									<th>Tgl Masuk</th>
+									
 								</tr>
 							</thead>
 							<tbody>
@@ -53,9 +53,9 @@
 									<td><?= $result->nm_supp?></td>
 									<td><?= $result->nm_barang ?></td>
 									<td><?= $result->jumlah ?></td>
-									<!-- <td><?= $result->waktu_masuk ?></td> -->
-									<td class="text-center">
-										<a href="<?= base_url('superuser/surat_terima/detail/'.$result->id_terima) ?>" class="btn btn-primary" style="margin-left: -40px"><i class="glyphicon glyphicon-print"> Cetak</i></a>
+									<td><?= $result->tgl_masuk ?></td>
+									<!-- <td class="text-center"> -->
+										<!-- <a href="<?= base_url('superuser/surat_terima/detail/'.$result->id_terima) ?>" class="btn btn-primary" style="margin-left: -40px"><i class="glyphicon glyphicon-print"> Cetak</i></a> -->
 										<!-- <a href="" class="btn btn-success"><i class="glyphicon glyphicon-list"> Detail</i></a> -->
 										
 										<!-- <ul class="icons-list">
@@ -71,7 +71,7 @@
 												</ul>
 											</li>
 										</ul> -->
-									</td>
+									<!-- </td> -->
 									
 								</tr>
 							<?php  

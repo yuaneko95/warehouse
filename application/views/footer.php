@@ -4,6 +4,7 @@
 	</div>
 	<!-- /page container -->
 </body>
+	
 	<script type="text/javascript" src="<?php echo base_url('') ?>assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url('') ?>assets/js/plugins/forms/selects/select2.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url('') ?>assets/js/pages/form_inputs.js"></script>
@@ -301,5 +302,51 @@
 			 })
 			
 		})
+	</script>
+	<script type="text/javascript">
+		function bulk_delete()
+		{
+		    var id_barang = [];
+		    $(".data-check:checked").each(function() {
+		            id_barang.push(this.value);
+		    });
+		    if(id_barang.length > 0)
+		    {
+		        if(confirm('Are you sure you want to create report this '+id_barang.length+' data?'))
+		        {
+		            $.ajax({
+		                type: "POST",
+		                data: {id:id_barang},
+		                url: "<?php echo site_url('superuser/ajax_bulk_report')?>",
+		                dataType: "JSON",
+		                success: function(data)
+		                {
+		                    if(data.status)
+		                    {
+		                        reload_table();
+		                    }
+		                    else
+		                    {
+		                        alert('Failed.');
+		                    }
+		                    
+		                },
+		                error: function (jqXHR, textStatus, errorThrown)
+		                {
+		                    alert('Error deleting data');
+		                }
+		            });
+		        }
+		    }
+		    else
+		    {
+		        alert('no data selected');
+		    }
+		}
+
+		function reload_table()
+		{
+		    table.ajax.reload(null,false); //reload datatable ajax 
+		}
 	</script>
 </html>
